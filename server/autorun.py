@@ -13,7 +13,7 @@ class server:
 		#            )""")
 
 		self.c.execute(
-			"INSERT INTO races VALUES ('1856', 'mazda_mx5_cup', 'magione')")
+			"INSERT INTO races VALUES ('2245', 'mazda_mx5_cup', 'magione')")
 
 		self.c.execute(
 			"DELETE FROM races WHERE rowid in (select rowid FROM races LIMIT 1)")
