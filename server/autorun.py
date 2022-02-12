@@ -13,7 +13,7 @@ c = conn.cursor()
 #            track text
 #            )""")
 
-c.execute("INSERT INTO races VALUES ('1410', 'bmw_m3_e30_gra', 'mugello')")
+c.execute("INSERT INTO races VALUES ('1856', 'mazda_mx5_cup', 'magione')")
 
 c.execute("DELETE FROM races WHERE rowid in (select rowid FROM races LIMIT 1)")
 
@@ -26,7 +26,7 @@ c.execute("SELECT track FROM races")
 track = c.fetchone()
 track = track[0]
 
-print("The next race is: " + car[0] + " at " + track[0] + " at " + raceTime[0])
+print("The next race is: " + car + " at " + track + " at " + raceTime[0])
 
 conn.commit()
 conn.close()
@@ -66,4 +66,5 @@ while True:
                 f.writelines("\n")
         
         subprocess.run(['acServer.exe']) #Runs the dedicated server
-        time.sleep(120) #Prevents the server from running more than once
+        time.sleep(5) #Prevents the server from running more than once - not sure this is necassary
+        c.execute("DELETE FROM races WHERE rowid in (select rowid FROM races LIMIT 1)")
