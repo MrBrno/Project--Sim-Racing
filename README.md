@@ -1,3 +1,3 @@
 # Project--Sim-Racing
 
-All the code can be found here.
+Both server automation code and website code can be found here
