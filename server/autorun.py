@@ -55,7 +55,7 @@ while True:
 
         with open("cfg/entry_list.ini", "w") as f: #Write every individual car to the entry list CFG file
             for i in range(0, 24):
-                f.writelines("[Car_" + str(i) + "]\n")
+                f.writelines("[CAR_" + str(i) + "]\n")
                 f.writelines("MODEL=" + car + "\n")
                 f.writelines("SKIN=" + "\n")
                 f.writelines("SPECTATOR_MODE=0" + "\n")
