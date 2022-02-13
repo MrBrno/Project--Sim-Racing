@@ -73,4 +73,4 @@ class server:
 				self.c.execute("DELETE FROM races WHERE rowid in (select rowid FROM races LIMIT 1)")
 
 #while True:
-    server = server() 
+server = server() 
