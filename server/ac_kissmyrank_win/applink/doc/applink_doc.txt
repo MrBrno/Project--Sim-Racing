@@ -1,0 +1,187 @@
+Kissmyrank Assetto Corsa AppLink Documentation & Example
+---------------------------------------------
+Author: Brioche
+---------------------------------------------
+Intro
+---------------------------------------------
+The Kissmyrank AppLink is a feature of the Kissmyrank Assetto Corsa Server Plugin that allows apps to access the Kissmyrank event stream.
+This can be used by spotter apps to improve the overall client-side experience and react to Kissmyrank server-side events (e.g. cuts, virtual safety car, drive-through, formation lap, penalties etc.).
+---------------------------------------------
+Example
+---------------------------------------------
+The Kissmyrank Assetto Corsa Server plugin supports Server Side features like Drive-Through or Virtual Safety Car.
+Without any app, the plugin relies on chat messages to communicate these events to the players.
+Now wouldn't it be nice if Assetto Corsa apps could be notified of events without relying on chat messages?
+This is exactly what the Kissmyrank AppLink does.
+---------------------------------------------
+Example App
+---------------------------------------------
+Starting from version 1.6, a proof of concept example app can be found inside the Kissmyrank Assetto Corsa Local Plugin package under /applink/example/
+Download: https://www.dropbox.com/sh/7lp4mobixpdx7x3/AABWelmzZlJPysxnRwJK-DL4a?dl=0
+---------------------------------------------
+How it works
+---------------------------------------------
+Step 1: AppLink Initialization
+---------------------------------------------
+In this first phase, the Assetto Corsa App that wants to interface with the Kissmyrank AppLink will use ac.sendChatMessage("/kmr applink") to send "/kmr applink" to the chat.
+The Kissmyrank Plugin will then reply with the server IP, the UDP port and the security token required to start the AppLink stream.
+---------------------------------------------
+Example output:
+	AppLink: 54.0.0.1:12002 token1
+Where 
+	54.0.0.1 is the IP of the Kissmyrank server
+	12002 is the UDP port
+	token1 is the 6 characters token to be used to connect
+---------------------------------------------
+Notes: 
+	- it's better to wait a few seconds after the App startup before sending the "/kmr applink" command to the chat
+	- if the Kissmyrank plugin was not able to detect the public IP of the server during the startup, it might return "auto" instead of the IP. In that case you can use the ac.getServerIP() method to retreive the server IP (use this only as a fallback as it won't work if Kissmyrank is hosted on a different IP)
+---------------------------------------------
+To retrieve the result you need to add the onChatMessage listener with:
+	ac.addOnChatMessageListener(appWindow, onMessage)
+and then define onMessage function accordingly.
+---------------------------------------------	
+Example (Python):
+	def onMessage(message, by):
+		...
+		if not kmr_applink_token and not kmr_applink_connected and by == "SERVER":
+			# AppLink is not initialized
+			m = re.search("AppLink: ([^:]+):([\d]+) ([^ ]+)$", message)
+			if m:
+				# this is the message we're looking for
+				kmr_applink_ip = m.group(1)
+				kmr_applink_port = int(m.group(2))
+				kmr_applink_token = m.group(3)
+---------------------------------------------
+Notes:
+	- you might want to set a timeout or a max number of messages after the AppLink initialization chat request to stop parsing messages on servers that do not support the AppLink
+---------------------------------------------
+Step 2: Starting the Applink Stream
+---------------------------------------------
+To start the stream you need to send a packet containing the following:
+	UTF32LE: AppID (an arbitrary string identifying your app e.g. CrewChief),
+	UTF32LE: Token (the token that you retrieved on Step 1),
+	UInt8: RequestType (1 to start the stream, 0 to stop it)
+---------------------------------------------
+Strings will be preceded by a byte expressing the number of characters they contain (before conversion).
+Example (Python):
+	if not kmr_applink_sock:
+		# socket is not there, we need to create it
+		kmr_applink_sock = socket.socket(socket.AF_INET,  # Internet
+										 socket.SOCK_DGRAM)  # UDP
+		# we don't want to freeze AC
+		kmr_applink_sock.settimeout(0.001)
+		# let's leave the port choice to the operating system
+		kmr_applink_sock.bind(("", 0))
+	# let's create the request
+	request = chr(len(kmr_applink_app_id)).encode('iso-8859-1') + kmr_applink_app_id.encode('utf-32le') + chr(
+            len(kmr_applink_token)).encode('iso-8859-1') + kmr_applink_token.encode(
+            'utf-32le') + chr(new_status).encode('iso-8859-1')
+    kmr_applink_sock.sendto(request, (kmr_applink_ip, kmr_applink_port))
+---------------------------------------------
+Notes:
+	- Don't forget to set the socket timeout or Assetto Corsa will freeze while Python waits for some data.
+	- Binding ("",0) will make sure that the operating system will choose a free port and bind to all the interfaces
+---------------------------------------------
+Step 3: Receiving Data
+---------------------------------------------
+If everything is done properly, Kissmyrank will start sending one keep-alive packet per second and specific packets on events.
+You can receive and parse them in the acUpdate(deltaT) function.
+---------------------------------------------
+Example (Python):
+	try:
+		# see if we received something
+		data, addr = kmr_applink_sock.recvfrom(4096)
+		if data:
+			# parse it
+			r = parseData(data)
+			if r:
+				# if it's an event the result array
+				# contains the event information (first item is the id,
+				# last item is the full message localized in the user language)
+				# do something with the result
+	except:
+		pass
+---------------------------------------------
+Notes:
+	- You might want to use a timer to wait a while between calls.
+----------------------
+Step 4: Parsing Data
+---------------------------------------------
+Keep-alive Parsing
+---------------------------------------------
+Keep-alive packets come every second in the form:
+	UInt8: Type (it will be 1 for keep-alive)
+	UInt8: Position (a number containing the position)
+---------------------------------------------
+Example (Python):
+	if ord(data[0:1].decode("iso-8859-1")) == 1:
+        # keepalive (currently only contains the Kissmyrank position)
+        kmr_applink_position = ord(data[1:2].decode("iso-8859-1"))
+        # if we're getting the keepalive we're connected
+        kmr_applink_connected = 1
+---------------
+Event Parsing
+---------------------------------------------
+When an event (e.g cut, virtual safety car activation, damage, penalty, drive-through etc.)occurs, Kissmyrank will send an event packet in the form:
+	UInt8: Type (it will be 2 for events)
+	UTF32LE: ID of the event
+	UTF32LE: first arg of the event if any
+	UTF32LE: second arg of the event if any
+	....
+	UTF32LE: last arg of the event if any
+	UTF32LE: the full text of the message localized in the user language
+---------------------------------------------
+Strings and identifiers can be found inside the Kissmyrank Local Assetto Corsa Server Plugin package under /language/en.json.
+---------------------------------------------
+For example the line:
+	"virtual_safety_car_deployed": "Virtual Safety Car deployed for %s! Speed Limit: %s. No overtakes!",
+has 2 %s identifiers which will be included as two UTF32LE strings in the event packet together with the ID and the full localized message.
+It will thus result in the following packet:
+	UInt8: 2
+	UTF32LE: "virtual_safety_car_deployed"
+	UTF32LE: "60s",
+	UTF32LE: "120km/h",
+	UTF32LE: "Virtual Safety Car deployed for 60s! Speed Limit: 120km/h. No overtakes!"
+---------------------------------------------
+Again each string will be preceded by the number of characters that it contains (before conversion).
+Example (Python):
+	if ord(data[0:1].decode("iso-8859-1")) == 2:
+		result = []
+		# if we're here, it's an event
+        start = 1
+        while start < len(data):
+            # let's parse it
+            length = ord(data[start:start + 1].decode("iso-8859-1")) * 4
+            ac.log(str(length))
+            temp = data[start + 1:start + 1 + length]
+            result.append(temp.decode("utf-32le"))
+            start += 1 + length
+        # result is now an array containing the strings described above
+		print result[0]
+Notes:
+	- on session change the plugin will send an event with ID "new_session" (no arguments)
+	- the example app uses the result to write to some label controls. If events occur at about the same time, some of them might be displayed only for a few ms, in this case a call to ac.log would be much better to study the various events.
+	- the example app has very limited error control. If a packet is corrupt it might return meaningless data.
+---------------------------------------------
+Notes on the socket library
+---------------------------------------------
+The socket calls require _socket.pyd.
+You can find the required libs in the example package under /ac_kissmyrank_applink_example/stdlib and /ac_kissmyrank_applink_example/stdlib64.
+A separate version is required for 32 and 64 bits.
+You'll need to import them both depending on the system architecture.
+---------------------------------------------
+Example:
+if platform.architecture()[0] == "64bit":
+    sys.path.insert(len(sys.path), 'apps/python/ac_kissmyrank_applink_example/stdlib64')
+else:
+    sys.path.insert(len(sys.path), 'apps/python/ac_kissmyrank_applink_example/stdlib')
+os.environ['PATH'] = os.environ['PATH'] + ";."
+import socket
+----------------------------------------------
+For the full code please refer to the Example App: https://www.dropbox.com/sh/7lp4mobixpdx7x3/AABWelmzZlJPysxnRwJK-DL4a?dl=0
+----------------------------------------------
+That's all for now.
+----------------------------------------------
+Have fun,
+Brioche
