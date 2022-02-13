@@ -12,11 +12,11 @@ class server:
 		#            track text
 		#            )""")
 
-		self.c.execute(
-			"INSERT INTO races VALUES ('2245', 'mazda_mx5_cup', 'magione')")
+		# self.c.execute(
+		# 	"INSERT INTO races VALUES ('2245', 'mazda_mx5_cup', 'magione')")
 
-		self.c.execute(
-			"DELETE FROM races WHERE rowid in (select rowid FROM races LIMIT 1)")
+		# self.c.execute(
+		# 	"DELETE FROM races WHERE rowid in (select rowid FROM races LIMIT 1)")
 
 		self.c.execute("SELECT time FROM races")
 		self.raceTime = self.c.fetchone()
@@ -72,4 +72,5 @@ class server:
 				time.sleep(5)
 				self.c.execute("DELETE FROM races WHERE rowid in (select rowid FROM races LIMIT 1)")
 
-server = server() 
+#while True:
+    server = server() 
