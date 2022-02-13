@@ -85,11 +85,8 @@ a.article-title:hover {
   margin-right: 20px;
   margin-bottom: 16px;
 }
-.author-img1{
-  height: 125px;
-  width: 125px;
-  margin-right: 20px;
-  margin-bottom: 16px;
+.mr-2{
+    color: red;
 }
 .account-heading {
   font-size: 2.5rem;
