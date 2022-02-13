@@ -22,6 +22,6 @@ from race import views as race
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blog.urls')),
-    path('race/', race.race, name="race")
+    path('race/', race.race_views, name="race")
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

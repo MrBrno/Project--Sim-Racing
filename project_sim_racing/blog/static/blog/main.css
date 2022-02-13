@@ -120,3 +120,12 @@ a.article-title:hover {
   border: 5px solid rgb(0, 255, 106);
   margin: 0;
 }
+.race-section {
+  display: inline-block;
+  width: 50%;
+  font-size: 18px;
+  color:white;
+  background: #24252A;
+  padding: 10px 200px;
+  margin-bottom: 20px;
+}

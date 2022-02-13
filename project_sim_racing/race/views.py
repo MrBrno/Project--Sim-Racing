@@ -1,6 +1,10 @@
 from django.shortcuts import render
-
-def race(request):
-    return render(request, 'race/races.html')
+from .models import race as r
+from datetime import datetime 
+def race_views(request):
+    context = {
+        'races': r.objects.all()
+    }
+    return render(request, 'race/races.html', context)
 
     
