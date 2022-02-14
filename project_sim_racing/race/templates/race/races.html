@@ -4,8 +4,10 @@
     <article class="race-section">
         <p>{{ race.track }}</p>
         <p>{{ race.car }}</p>
-        <p>{{ race.time }}</p>
-        <p>{{ race.how_much_time_left }}</p>
+        {% if race.race_bool %}
+            <p>{{ race.time }}</p>
+            <p>{{ race.how_much_time_left }}</p>
+        {% endif %}
         <a class="join-race" href="acmanager://race/online?ip=3.86.108.20&port=9600&httpPort=8081&car={{race.car.in_game_name}}" target="_blank">Join</a>
     </article>
 {% endfor %}

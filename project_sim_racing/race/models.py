@@ -8,6 +8,7 @@ class track(models.Model):
     def __str__(self):
         return self.track_name
     
+
 class car(models.Model):
     brand_name = models.CharField(max_length=50,default='')
     model_name = models.CharField(max_length=50,default='')
@@ -16,13 +17,13 @@ class car(models.Model):
         return self.brand_name + " " + self.model_name
 
 class race(models.Model):
+    name = models.CharField(max_length=50,default='')
     track = models.ForeignKey(track, on_delete=models.CASCADE)
     car = models.ForeignKey(car, on_delete=models.CASCADE)
     time = models.DateTimeField()
-
-
+    race_bool = models.BooleanField(default=True)
 
     def how_much_time_left(self):
         return self.time - timezone.now()
     def __str__(self):
-        return "Race at: " + str(self.time)
+        return self.name
