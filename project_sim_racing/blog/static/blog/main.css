@@ -5,13 +5,19 @@ body {
   margin-top: 5rem;
   font-family: sans-serif;
 }
+#bg {
 
+  background-repeat: no-repeat;
+  background-position: top;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
 ul {
   margin: 0;
 }
 .bg-steel {
     font-family: Century Gothic;
-    background:#24252A;
+    background: transparent;
 
 }
 .navbar-brand mr-4{
@@ -137,7 +143,7 @@ a.article-title:hover {
   padding: 5px;
   font-size: 18px;
   color:white;
-  background: #24252A;
+  background: solid transparent;
   padding: 20px 10px;
   margin-bottom: 20px;
   margin-left: 50%;
