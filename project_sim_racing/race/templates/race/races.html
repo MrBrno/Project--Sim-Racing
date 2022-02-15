@@ -1,18 +1,29 @@
 {% include 'blog/base.html' %}
 {% block content %}
 
+<div class="raceContainer">
+    {% for race in races %}
+    <div class="race-section">
 
-{% for race in races %}
-<article class="race-section">
         <a class="join-race" href="acmanager://race/online?ip=3.86.108.20&port=9600&httpPort=8081&car={{race.car.in_game_name}}" target="_blank">Join</a>
-        
-        {% if race.race_bool %}
-            <p>{{ race.name }}|{{ race.track }}|{{ race.car }}|{{ race.time|date:'h m' }}</p>
-            
-        {% else %}
-            <p>{{ race.name }}|{{ race.track }}|{{ race.car }}|{{ race.time|date:'h m' }}</p>
-        {% endif %}
-    </article>
-{% endfor %}
+            {% if race.race_bool %}
+                <p class="carText">{{ race.car }}</p>
+                <p>
+                    {{ race.name }} <br>
+                    {{ race.track }} <br>
+                    {{ race.time|date:'h m'}}
+                </p>
+                
+            {% else %}
+                <p class="carText">{{ race.car }}</p>
+                <p>
+                    {{ race.name }}<br>
+                    {{ race.track }}<br>
+                    {{ race.time|date:'h m'}}
+                </p>
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
 
 {% endblock content%}
