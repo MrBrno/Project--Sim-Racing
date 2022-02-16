@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'users.apps.UsersConfig',
     'crispy_forms',
     'race.apps.RaceConfig',
     'blog.apps.BlogConfig',
@@ -127,5 +128,5 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-LOGIN_REDIRECT_URL = 'social-home'
+LOGIN_REDIRECT_URL = 'race'
 LOGIN_URL = 'login'

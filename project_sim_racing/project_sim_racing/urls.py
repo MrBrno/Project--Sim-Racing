@@ -15,13 +15,27 @@ Including another URLconf
 """    
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.auth import views as auth_views
 from django.conf.urls.static import static
 from django.conf import settings
-from race import views as race
+from race import views as race_views
+from users import views as user_views
+from django.views.generic.base import RedirectView
+
+admin.site.site_header = 'Project Sim Racing'
+admin.site.site_title = 'Project Sim Racing'
+admin.site.index_title = 'Project Sim Racing'
+admin.empty_value_display = '**Empty**'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('blog.urls')),
-    path('race/', race.race_views, name="race"),
+    path('blog/', include('blog.urls'), name="blog"),
+    path('profile/', user_views.profile, name='profile'),
+    path('', race_views.race_views, name="race"),
+    path('register/', user_views.register, name="register"),
+    path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
+    #path('my_ext_uri', RedirectView.as_view(url='https://YOUR_EXTERNAL_URL')),
+     
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

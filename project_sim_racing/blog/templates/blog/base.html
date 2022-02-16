@@ -12,28 +12,29 @@
     <title>Project Sim Racing</title>
     
 </head>
-<body id="bg" style="background-image: url(' {% static 'blog/images/img.jpg' %}");">
+<body id="bg" style="background-image: url(' {% static 'blog/images/img.jpg' %}");>
     <header class="site-header">
         <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
           
           <div class="navContainer">
-            <a class="navbar-brand mr-4" href="/">Project SimRacing</a>
-            <div class="collapse navbar-collapse" id="navbarToggle">
-              <a class="nav-item nav-link" href="/">Home</a>
+            <h1 class="title" href="/blog">PSR</h1>
+            {% if user.is_authenticated %}
+              <img class="rounded-circle profile-pic" src="{{ user.profile.image.url }}">
+              <a class="btn" href="{% url 'profile' %}">{{user.username}}</a>
+              <a class="btn" href="{% url 'race' %}">Race</a>
+              <a class="btn" href="{% url 'logout' %}">Logout</a>
               {% if user.is_staff %}
-              <a class="nav-item nav-link" href="/admin">Admin Panel</a>
+                <a class="btn" href="/admin">Admin Panel</a>
               {% endif %}
+            {% else %}
+              <a class="btn" href="/blog">Blog</a>
+              <a class="btn" href="{% url 'login' %}">Login</a>
+              <a class="btn" href="{% url 'register' %}">Register</a>
+            {% endif %}
+            <div class="collapse navbar-collapse" id="navbarToggle">
               </div>
               <!-- Navbar Right Side -->
               <div class="navbar-nav">
-              {% if user.is_authenticated %}
-                <a class="nav-item nav-link" href="#">{{user.username}}</a>
-                <a class="nav-item nav-link" href="/race/">Race</a>
-                <a class="nav-item nav-link" href="#">Logout</a>
-              {% else %}
-                <a class="nav-item nav-link" href="#">Login</a>
-                <a class="nav-item nav-link" href="#">Register</a>
-              {% endif %}
             </div>
           </div>
           
@@ -43,6 +44,20 @@
       <div class="adbox">
         <h1> Ads go Here </h1>
       </div>
+      <main role="main" class="container">
+        <div class="row">
+          <div class="col-md-8">
+            {% if messages %}
+              {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                  {{ message }}
+                </div>
+              {% endfor %}
+            {% endif %}
+            {% block content %}{% endblock %}
+          </div>
+        </div>
+      </main>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
