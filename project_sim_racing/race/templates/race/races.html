@@ -5,24 +5,24 @@
     {% for race in races %}
     <div class="race-section">
 
-        <a class="join-race" href="acmanager://race/online?ip=3.86.108.20&port=9600&httpPort=8081&car={{race.car.in_game_name}}" target="_blank">Join</a>
+        <a class="join-race" href="https://acstuff.ru/s/q:race/online/join?ip={{ race.server_ip }}&httpPort={{ race.port_number }}" target="_blank">Join</a>
             {% if race.race_bool %}
+                <p class="carText">{{ race.car }}</p>
+                <p>
+                    {{ race.name }}<br>
+                    {{ race.track }} | Practice Time {{race.practice_time}} | Qualifying {{race.quli_time}} | Race Laps {{race.race_laps}}<br>
+                    
+                </p>
+            {% else %}
                 <p class="carText">{{ race.car }}</p>
                 <p>
                     {{ race.name }} <br>
                     {{ race.track }} <br>
-                    {{ race.time|date:'h m'}}
-                </p>
-                
-            {% else %}
-                <p class="carText">{{ race.car }}</p>
-                <p>
-                    {{ race.name }}<br>
-                    {{ race.track }}<br>
-                    {{ race.time|date:'h m'}}
                 </p>
             {% endif %}
+
         </div>
+
     {% endfor %}
 </div>
 

@@ -17,11 +17,17 @@ class car(models.Model):
         return self.brand_name + " " + self.model_name
 
 class race(models.Model):
+    race_bool = models.BooleanField(default=True)
+    practice_time = models.IntegerField(default=5)
+    quli_time = models.IntegerField(default=10)
+    race_laps = models.IntegerField(default=5)
+    port_number = models.IntegerField(default=8080)
+    server_ip = models.CharField(max_length=20, default="195.211.11.141")
     name = models.CharField(max_length=50,default='')
+    info = models.CharField(max_length=100,default='')
     track = models.ForeignKey(track, on_delete=models.CASCADE)
     car = models.ForeignKey(car, on_delete=models.CASCADE)
     time = models.DateTimeField()
-    race_bool = models.BooleanField(default=True)
 
     def how_much_time_left(self):
         return self.time - timezone.now()

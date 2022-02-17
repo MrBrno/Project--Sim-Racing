@@ -177,11 +177,11 @@ a.article-title:hover {
   float :right;
 }
 
-.navbar:hover ~ .race-section {
+.navbar:hover ~ .race-section{
   width: 20%;
 }
 
-.race-section:hover {
+.race-section:hover{
   height: 12rem;
   transition: 1s ease;
 }
@@ -191,6 +191,7 @@ a.article-title:hover {
   font-size: 30px;
   transform: translate(-1rem, -5rem) rotate(-10deg);
 }
+
 
 .adbox {
   width: 10rem;
