@@ -177,7 +177,7 @@ a.article-title:hover {
   float :right;
 }
 
-.navbar:hover ~ .race-section{
+.navbar:hover ~{
   width: 20%;
 }
 
