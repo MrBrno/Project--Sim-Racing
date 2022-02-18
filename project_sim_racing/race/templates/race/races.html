@@ -2,7 +2,6 @@
 {% block content %}
 
 <div class="raceContainer">
-    {% for race in races %}
     <div class="race-section">
 
         <a class="join-race" href="https://acstuff.ru/s/q:race/online/join?ip={{ race.server_ip }}&httpPort={{ race.port_number }}" target="_blank">Join</a>
@@ -23,7 +22,6 @@
 
         </div>
 
-    {% endfor %}
 </div>
 
 {% endblock content%}

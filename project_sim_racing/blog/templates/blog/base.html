@@ -20,6 +20,7 @@
             <h1 class="title" href="/blog">PSR</h1>
             {% if user.is_authenticated %}
               <img class="rounded-circle profile-pic" src="{{ user.profile.image.url }}">
+              <a>{{user.safety}}</a>
               <a class="btn" href="{% url 'profile' %}">{{user.username}}</a>
               <a class="btn" href="{% url 'race' %}">Race</a>
               <a class="btn" href="{% url 'logout' %}">Logout</a>

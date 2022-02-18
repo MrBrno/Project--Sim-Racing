@@ -16,20 +16,70 @@ class car(models.Model):
     def __str__(self):
         return self.brand_name + " " + self.model_name
 
-class race(models.Model):
-    race_bool = models.BooleanField(default=True)
-    practice_time = models.IntegerField(default=5)
-    quli_time = models.IntegerField(default=10)
-    race_laps = models.IntegerField(default=5)
-    port_number = models.IntegerField(default=8080)
-    server_ip = models.CharField(max_length=20, default="195.211.11.141")
+class server1(models.Model):
+    practice_server = models.BooleanField(default=False)
     name = models.CharField(max_length=50,default='')
-    info = models.CharField(max_length=100,default='')
     track = models.ForeignKey(track, on_delete=models.CASCADE)
     car = models.ForeignKey(car, on_delete=models.CASCADE)
-    time = models.DateTimeField()
+    minute = models.IntegerField()
+    practice_time = models.IntegerField(default=5)
+    qualify_time = models.IntegerField(default=10)
+    race_laps = models.IntegerField(default=5)
+    server_ip = models.CharField(max_length=20, default="195.211.11.141")
+    port_number = models.IntegerField(default=8080)
 
-    def how_much_time_left(self):
+    def time_left(self):
+        return self.time - timezone.now()
+    def __str__(self):
+        return self.name
+
+class server2(models.Model):
+    practice_server = models.BooleanField(default=False)
+    name = models.CharField(max_length=50,default='')
+    track = models.ForeignKey(track, on_delete=models.CASCADE)
+    car = models.ForeignKey(car, on_delete=models.CASCADE)
+    minute = models.IntegerField()
+    practice_time = models.IntegerField(default=5)
+    quaulify_time = models.IntegerField(default=10)
+    race_laps = models.IntegerField(default=5)
+    server_ip = models.CharField(max_length=20, default="195.211.11.141")
+    port_number = models.IntegerField(default=8080)
+
+    def time_left(self):
+        return self.time - timezone.now()
+    def __str__(self):
+        return self.name
+
+class server3(models.Model):
+    practice_server = models.BooleanField(default=False)
+    name = models.CharField(max_length=50,default='')
+    track = models.ForeignKey(track, on_delete=models.CASCADE)
+    car = models.ForeignKey(car, on_delete=models.CASCADE)
+    minute = models.IntegerField()
+    practice_time = models.IntegerField(default=5)
+    quaulify_time = models.IntegerField(default=10)
+    race_laps = models.IntegerField(default=5)
+    server_ip = models.CharField(max_length=20, default="195.211.11.141")
+    port_number = models.IntegerField(default=8080)
+
+    def time_left(self):
+        return self.time - timezone.now()
+    def __str__(self):
+        return self.name
+
+class server4(models.Model):
+    practice_server = models.BooleanField(default=False)
+    name = models.CharField(max_length=50,default='')
+    track = models.ForeignKey(track, on_delete=models.CASCADE)
+    car = models.ForeignKey(car, on_delete=models.CASCADE)
+    minute = models.IntegerField()
+    practice_time = models.IntegerField(default=5)
+    quaulify_time = models.IntegerField(default=10)
+    race_laps = models.IntegerField(default=5)
+    server_ip = models.CharField(max_length=20, default="195.211.11.141")
+    port_number = models.IntegerField(default=8080)
+
+    def time_left(self):
         return self.time - timezone.now()
     def __str__(self):
         return self.name
