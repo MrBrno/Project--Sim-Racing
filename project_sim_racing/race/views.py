@@ -5,7 +5,7 @@ from .models import server3 as race3
 from datetime import datetime 
 def race_views(request):
     context = {
-        'races': race1.objects.all()
+        'race1': race1.objects.all()
     }
     return render(request, 'race/races.html', context)
 
