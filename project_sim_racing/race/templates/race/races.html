@@ -27,33 +27,33 @@
             {% endif %}
         </nav>
     </div>
-    <div class="raceContainer">
-            {% for race in races %}
-                <div class="race-section">
-                    <a class="join-race" href="https://acstuff.ru/s/q:race/online/join?ip={{ race1.server_ip }}&httpPort={{ race1.port_number }}" target="_blank">Join</a>
-                        {% if race.race_bool %}
-                            <p class="carText">{{ race1.car }}</p>
-                            <p>
-                                {{ race.name }}<br>
-                                {{ race.track }} | Practice Time {{race.practice_time}} | Qualifying {{race.qualify_time}} | Race Laps {{race.race_laps}}<br>
-                                
-                            </p>
-                        {% else %}
-                            <p class="carText">{{ race1.car }}</p>
-                            <p>
-                                {{ race.name }} <br>
-                                {{ race.track }} <br>
-                            </p>
-                        {% endif %}
-                    </div>
-            {% endfor %}
-    </div>
 </body>
 </html>
 
 
 
 <!-- {% block content %}
+        <div class="raceContainer">
+        <div class="race-section">
 
+            <a class="join-race" href="https://acstuff.ru/s/q:race/online/join?ip={{ race1.server_ip }}&httpPort={{ race1.port_number }}" target="_blank">Join</a>
+                {% if race1.race_bool %}
+                    <p class="carText">{{ race1.car }}</p>
+                    <p>
+                        {{ race1.name }}<br>
+                        {{ race1.track }} | Practice Time {{race1.practice_time}} | Qualifying {{race1.qualify_time}} | Race Laps {{race1.race_laps}}<br>
+                        
+                    </p>
+                {% else %}
+                    <p class="carText">{{ race1.car }}</p>
+                    <p>
+                        {{ race1.name }} <br>
+                        {{ race1.track }} <br>
+                    </p>
+                {% endif %}
+
+            </div>
+
+    </div>
 
     {% endblock content%} -->
