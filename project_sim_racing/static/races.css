@@ -9,6 +9,7 @@
 body {
     background-image: url("/static/images/background1.jpg");
     font-family: "Roboto";
+    display: flex;
 }
 
 .sidebar {
@@ -29,19 +30,52 @@ body {
 
 .pfp {
     border-radius: 50%;
+    width: 10vw;
 }
 
 .btn{
     background-color: white;
     border-color: white;
     color: black;
-    transition: 0.6s ease;
-    padding: 20px;
+    padding: 12px;
     border-radius: 5%;
+    font-size: 1vw;
   }
 
-  .btn:hover{
+.btn:hover{
     background-color: rgb(255, 153, 0);
+    transition: 0.6s ease;
     border-color: orange;
     color: white;
+<<<<<<< Updated upstream
   }
+=======
+}
+
+.race-container {
+    float: right;
+    width: 80vw;
+    height: 100vh;
+    background:rgba(0, 0, 0, 0.3)
+}
+
+.banner {
+    height: 90vh;
+    width: 12vw;
+    margin: 2rem;
+    border-bottom-left-radius: 3vw;
+    border-top-right-radius: 3vw;
+    background-image: url("/static/images/VERTICALBANNER.PNG");
+    background-size: cover;
+    -webkit-filter: grayscale(1);
+    filter: grayscale(1);
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition: 0.3s ease;
+}
+
+.banner:hover {
+    -webkit-filter: grayscale(0);
+    filter: grayscale(0);
+    transition: 0.8s ease;
+}
+>>>>>>> Stashed changes
