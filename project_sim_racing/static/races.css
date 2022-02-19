@@ -20,6 +20,12 @@ body {
     text-align: center;
 }
 
+.image-container {
+    width: inherit;
+    height: auto;
+    margin-bottom: 2rem;
+}
+
 .btn{
     background-color: white;
     border-color: white;
