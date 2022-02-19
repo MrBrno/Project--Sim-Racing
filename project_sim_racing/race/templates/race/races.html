@@ -1,27 +1,59 @@
-{% include 'blog/base.html' %}
-{% block content %}
-
-<div class="raceContainer">
-    <div class="race-section">
-
-        <a class="join-race" href="https://acstuff.ru/s/q:race/online/join?ip={{ race1.server_ip }}&httpPort={{ race1.port_number }}" target="_blank">Join</a>
-            {% if race1.race_bool %}
-                <p class="carText">{{ race1.car }}</p>
-                <p>
-                    {{ race1.name }}<br>
-                    {{ race1.track }} | Practice Time {{race1.practice_time}} | Qualifying {{race1.qualify_time}} | Race Laps {{race1.race_laps}}<br>
-                    
-                </p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/races.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <title>Document</title>
+</head>
+<body>
+    <div class="sidebar">
+        <nav>
+            {% if user.is_authenticated %}
+              <img class="rounded-circle profile-pic" src="{{ user.profile.image.url }}">
+              <a>{{user.safety}}</a>
+              <a class="btn" href="{% url 'profile' %}">{{user.username}}</a>
+              <a class="btn" href="{% url 'race' %}">Race</a>
+              <a class="btn" href="{% url 'logout' %}">Logout</a>
+              {% if user.is_staff %}
+                <a class="btn" href="/admin">Admin Panel</a>
+              {% endif %}
             {% else %}
-                <p class="carText">{{ race1.car }}</p>
-                <p>
-                    {{ race1.name }} <br>
-                    {{ race1.track }} <br>
-                </p>
+              <a class="btn" href="/blog">Blog</a>
+              <a class="btn" href="{% url 'login' %}">Login</a>
+              <a class="btn" href="{% url 'register' %}">Register</a>
             {% endif %}
+        </nav>
+    </div>
+</body>
+</html>
 
-        </div>
 
-</div>
 
-{% endblock content%}
+<!-- {% block content %}
+        <div class="raceContainer">
+        <div class="race-section">
+
+            <a class="join-race" href="https://acstuff.ru/s/q:race/online/join?ip={{ race1.server_ip }}&httpPort={{ race1.port_number }}" target="_blank">Join</a>
+                {% if race1.race_bool %}
+                    <p class="carText">{{ race1.car }}</p>
+                    <p>
+                        {{ race1.name }}<br>
+                        {{ race1.track }} | Practice Time {{race1.practice_time}} | Qualifying {{race1.qualify_time}} | Race Laps {{race1.race_laps}}<br>
+                        
+                    </p>
+                {% else %}
+                    <p class="carText">{{ race1.car }}</p>
+                    <p>
+                        {{ race1.name }} <br>
+                        {{ race1.track }} <br>
+                    </p>
+                {% endif %}
+
+            </div>
+
+    </div>
+
+    {% endblock content%} -->
