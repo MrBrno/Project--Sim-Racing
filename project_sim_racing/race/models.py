@@ -1,7 +1,7 @@
 from tkinter import CASCADE
 from django.db import models
 from django.utils import timezone
-
+from django.urls import reverse
 class track(models.Model):
     track_name = models.CharField(max_length=50,default='')
 
@@ -32,4 +32,5 @@ class race(models.Model):
         return self.time - timezone.now()
     def __str__(self):
         return self.name
-
+    def get_absolute_url(self):
+        return reverse('race-detail', kwargs={'pk': self.pk})

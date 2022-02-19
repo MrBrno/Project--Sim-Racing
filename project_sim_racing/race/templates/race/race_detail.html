@@ -1,0 +1,25 @@
+{% include 'race/races.html' %}
+{% block content %}
+<div class="raceContainer">
+    <div class="race-section">
+
+        <a class="join-race" href="https://acstuff.ru/s/q:race/online/join?ip={{ object.server_ip }}&httpPort={{ object.port_number }}" target="_blank">Join</a>
+            {% if object.race_bool %}
+                <p class="carText">{{ object.car }}</p>
+                <p>
+                    {{ object.name }}<br>
+                    {{ object.track }} | Practice Time {{object.practice_time}} | Qualifying {{object.qualify_time}} | Race Laps {{object.race_laps}}<br>
+                    
+                </p>
+            {% else %}
+                <p class="carText">{{ object.car }}</p>
+                <p>
+                    {{ object.name }} <br>
+                    {{ object.track }} <br>
+                </p>
+            {% endif %}
+
+        </div>
+
+</div>
+{% endblock content %}
