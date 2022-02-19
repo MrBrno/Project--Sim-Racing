@@ -46,10 +46,7 @@ body {
     background-color: rgb(255, 153, 0);
     transition: 0.6s ease;
     border-color: orange;
-    color: white;
-<<<<<<< Updated upstream
-  }
-=======
+    color: white;  
 }
 
 .race-container {
@@ -69,7 +66,6 @@ body {
     background-size: cover;
     -webkit-filter: grayscale(1);
     filter: grayscale(1);
-    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
     transition: 0.3s ease;
 }
 
@@ -78,4 +74,3 @@ body {
     filter: grayscale(0);
     transition: 0.8s ease;
 }
->>>>>>> Stashed changes
