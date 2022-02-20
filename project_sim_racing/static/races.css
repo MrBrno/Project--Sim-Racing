@@ -70,6 +70,7 @@ body {
     filter: grayscale(1);
     transition: 0.2s ease;
     text-align: center;
+
 }
 
 .banner:hover {
