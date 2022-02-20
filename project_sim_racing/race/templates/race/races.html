@@ -27,20 +27,22 @@
         </nav>
     </div>
     {% for race in races %}
-        <div class="race-container">
-            <div class="banner">
-                <h1 class="trackinfo">{{ race.track }}</h1>
-                <img class="trackimg" src="media/{{race.track.track_image}}">
-                <img class="carimg" src="media/{{race.car.car_image}}">
-                <h1 class="carinfo">{{race.car}}</h1>
-                <a class="register" href="">Register</a>
-                <div class="sessioninfo"> 
-                    Practice: {{race.practice_time}} Minutes<br>
-                    Qualify: {{ race.quaulify_time}} Minutes <br>
-                    Race: {{race.race_laps}} Laps
+            <div class="race-container">
+                <a href="race/{{race.id}}">
+                <div class="banner">
+                    <h1 class="trackinfo">{{ race.track }}</h1>
+                    <img class="trackimg" src="media/{{race.track.track_image}}">
+                    <img class="carimg" src="media/{{race.car.car_image}}">
+                    <h1 class="carinfo">{{race.car}}</h1>
+                    <a class="register" href="race/{{race.id}}">Register</a>
+                    <div class="sessioninfo"> 
+                        Practice: {{race.practice_time}} Minutes<br>
+                        Qualify: {{ race.quaulify_time}} Minutes <br>
+                        Race: {{race.race_laps}} Laps
+                    </div>
                 </div>
+                </a>
             </div>
-        </div>
     {% endfor %}
 </body>
 
