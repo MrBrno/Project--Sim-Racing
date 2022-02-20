@@ -13,13 +13,12 @@ body {
 }
 
 .sidebar {
-    background-color: black;
+    background-color: rgb(26, 26, 26);
     height: 100vh;
-    width: 20vw;
+    width: 50vw;
     opacity: 98%;
     display: block;
     text-align: center;
-    white-space: nowrap;
 }
 
 .pfp-container {
@@ -55,7 +54,7 @@ body {
     float: right;
     width: 80vw;
     height: 100vh;
-    background:rgba(0, 0, 0, 0.3)
+    background:rgba(0, 0, 0, 0.5)
 }
 
 .banner {
@@ -86,8 +85,13 @@ body {
     font-weight: bold;
 }
 
+.track-container {
+    width: 100%;
+}
+
 .trackimg {
-    width: 90%;
+    height: 25vh;
+    width: auto;
     margin-top: 3vh;
 }
 

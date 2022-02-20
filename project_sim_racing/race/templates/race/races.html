@@ -30,7 +30,9 @@
         <div class="race-container">
             <div class="banner">
                 <h1 class="trackinfo">{{ race.track }}</h1>
-                <img class="trackimg" src="media/{{race.track.track_image}}">
+                <div class="track-container">
+                    <img class="trackimg" src="media/{{race.track.track_image}}">
+                </div>
                 <img class="carimg" src="media/{{race.car.car_image}}">
                 <h1 class="carinfo">{{race.car}}</h1>
                 <a class="register" href="">Register</a>
