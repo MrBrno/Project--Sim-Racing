@@ -15,7 +15,7 @@
                 <div class="driver-profile">
                     <p class="driver-stats">
                         {{user.username}} <br>
-                        Safety: 100<br>
+                        Safety: {{user.profile.safety_rating}}<br>
                         Rank: Bronze
                     </p>
                     <img class="pfp" src="{{ user.profile.image.url }}">
@@ -28,14 +28,14 @@
                 </div>
                 <h3>Safety Rating</h3>
                 <div class="stat-border">
-                    <div class="stat-bar" style="width: 65%;"></div>
+                    <div class="stat-bar" style="width: {{user.profile.safety_rating}}%;"></div>
                 </div>
                 <p class="text-stats">
-                    Race Starts: 12 <br>
-                    Poles: 5 <br>
-                    Laps Lead: 76 <br>
-                    Podium Finishes: 3 <br>
-                    Wins: 1
+                    Race Starts: {{ user.profile.races_started }} <br>
+                    Poles: {{user.profile.poles}} <br>
+                    Laps Lead: {{user.profile.laps_lead}} <br>
+                    Podium Finishes: {{user.profile.podiums}} <br>
+                    Wins: {{user.profile.wins}}
                 </p>
             </div>
 
@@ -47,7 +47,7 @@
             {% endif %}
             <a class="btn" href="{% url 'logout' %}">Logout</a>
         {% else %}
-            <meta http-equiv='refresh' content='0; URL=http://127.0.0.1:8000/login'>
+            <meta http-equiv='refresh' content='0; URL={% url 'login' %}'>
         {% endif %}
     </div>
         <div class="race-container">
