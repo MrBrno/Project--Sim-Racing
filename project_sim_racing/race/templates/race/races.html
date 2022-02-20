@@ -26,17 +26,20 @@
             {% endif %}
         </nav>
     </div>
-    {% for race in races %}
-            <div class="race-container">
-                <div class="banner">
-                    <h1 class="trackinfo">{{race.track}}</h1>
-                    <img class="trackimg" src="media/{{race.track.track_image}}">
-                    <img class="carimg" src="media/{{race.car.car_image}}">
-                    <h1 class="carinfo">{{race.car}}</h1>
-                    <a class="register"  href="https://acstuff.ru/s/q:race/online/join?ip={{ race.server_ip }}&httpPort={{ race.port_number }}">Register</a>
-                </div>
+    <div class="race-container">
+        <div class="banner">
+            <h1 class="trackinfo">Silverstone National</h1>
+            <img class="trackimg" src="media/track_images/map_Z6s9kPP.png">
+            <img class="carimg" src="media/car_images/mazda.png">
+            <h1 class="carinfo">Mazda MX5 Cup</h1>
+            <a class="register" href="">Register</a>
+            <div class="sessioninfo"> 
+                Practice: 5 Minutes <br>
+                Qualify: 10 Minutes <br>
+                Race: 5 Laps
             </div>
-    {% endfor %}
+        </div>
+    </div>
 </body>
 
 
