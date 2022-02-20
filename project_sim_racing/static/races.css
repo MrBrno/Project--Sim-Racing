@@ -110,6 +110,7 @@ body {
 .banner {
     height: 90vh;
     width: 40%;
+    min-width: 200px;
     margin: 2rem;
     border-bottom-left-radius: 3vw;
     border-top-right-radius: 3vw;
