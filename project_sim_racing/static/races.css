@@ -13,33 +13,51 @@ body {
 }
 
 .sidebar {
-    background-color: rgb(26, 26, 26);
+    background-color: rgb(21, 21, 16);
     height: 100vh;
-    width: 50vw;
+    width: auto;
     opacity: 98%;
     display: block;
     text-align: center;
 }
 
-.pfp-container {
-    padding: 1rem;
+.driver-profile {
+    margin-top: 3vh;
     width: inherit;
-    height: auto;
+    height: 7vw;
     margin-bottom: 1rem;
+    background-color: rgba(255, 0, 0, 0.7);
+    border-top-right-radius: 70%;
+    border-bottom-left-radius: 20%;
+    padding: 5px 20px;
+}
+
+.driver-stats {
+    color: white;
+    text-decoration: none;
+    float: left;
+    transform: translateY(50%);
+    font-size: 1vw;
 }
 
 .pfp {
     border-radius: 50%;
-    width: 10vw;
+    width: 7vw;
+    float: right;
+    /* transform: translateX(1.2vw); */
 }
 
 .btn{
+    display: block;
+    width: 20vw;
+    height: 3vh;
     background-color: white;
     color: black;
     border: 2px black;
     transition: 0.6s ease;
-    padding: 8px;
-    border-radius: 5%;
+    padding: 10px;
+    margin: 1vh;
+    border-radius: 10px;
     font-size: 1vw;
   }
 
@@ -50,11 +68,43 @@ body {
     color: white;  
 }
 
+.stats-container {
+    /* background-color: #000000c5; */
+    width: 100%;
+    height: 40vh;
+    color: white;
+    padding: 1vh 0;
+    margin: 3vh 0;
+}
+
+.stat-border {
+    display: block;
+    width: 80%;
+    margin: 1vh 10% 2vh 10%;
+    height: 3vh;
+    border-radius: 20px;
+    background-color: white;
+}
+
+.stat-bar {
+    background-color: red;
+    height: 100%;
+    opacity: 0.8;
+    border-radius: 20px;
+}
+
+.text-stats {
+    text-align: center;
+    font-size: 1vw;
+    line-height: 4vh;
+}
+
 .race-container {
     float: right;
     width: 80vw;
     height: 100vh;
-    background:rgba(0, 0, 0, 0.5)
+    background:rgba(0, 0, 0, 0.5);
+    text-align: left;
 }
 
 .banner {
@@ -92,6 +142,7 @@ body {
 .trackimg {
     height: 25vh;
     width: auto;
+    max-width: 95%;
     margin-top: 3vh;
 }
 
