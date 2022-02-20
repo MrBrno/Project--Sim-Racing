@@ -8,7 +8,7 @@
 
 body {
     background-image: url("/static/images/background1.jpg");
-    font-family: "Roboto";
+    font-family: "Lato";
     display: flex;
 }
 
@@ -19,6 +19,7 @@ body {
     opacity: 95%;
     display: block;
     text-align: center;
+    white-space: nowrap;
 }
 
 .pfp-container {
@@ -35,9 +36,10 @@ body {
 
 .btn{
     background-color: white;
-    border-color: white;
     color: black;
-    padding: 12px;
+    border: 2px black;
+    transition: 0.6s ease;
+    padding: 8px;
     border-radius: 5%;
     font-size: 1vw;
   }
@@ -58,7 +60,7 @@ body {
 
 .banner {
     height: 90vh;
-    width: 12vw;
+    width: 15vw;
     margin: 2rem;
     border-bottom-left-radius: 3vw;
     border-top-right-radius: 3vw;
@@ -66,11 +68,55 @@ body {
     background-size: cover;
     -webkit-filter: grayscale(1);
     filter: grayscale(1);
-    transition: 0.3s ease;
+    transition: 0.2s ease;
+    text-align: center;
 }
 
 .banner:hover {
     -webkit-filter: grayscale(0);
     filter: grayscale(0);
-    transition: 0.8s ease;
+    transition: 0.6s ease;
+}
+
+.trackinfo{
+    padding-top: 5vh;
+    color: white;
+    font-size: 1.3vw;
+    font-weight: bold;
+}
+
+.trackimg {
+    width: 90%;
+    margin-top: 3vh;
+}
+
+.carimg {
+    width: 60%;
+    margin-top: 3vh;
+}
+
+.carinfo {
+    padding-top: 3vh;
+    color: white;
+    font-size: 1.3vw;
+    font-weight: bold;
+}
+
+.register {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-bottom-left-radius: 3vw;
+    border-top-right-radius: 3vw;
+    background-color: red;
+    width: 100%;
+    height: 5vh;
+    color: white;
+    font-size: 2vw;
+    opacity: 0.9;
+}
+
+.register:hover {
+    opacity: 1;
+    box-shadow: 0 0 10px 1px red;
 }
