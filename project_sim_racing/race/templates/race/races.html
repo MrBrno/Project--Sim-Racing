@@ -50,9 +50,9 @@
             <meta http-equiv='refresh' content='0; URL=http://127.0.0.1:8000/login'>
         {% endif %}
     </div>
-        {% for race in races %}
-            <div class="race-container">
-                <a href="race/{{race.id}}">
+        <div class="race-container">
+            {% for race in races %}
+            <a href="race/{{race.id}}">
                 <div class="banner">
                     <h1 class="trackinfo">{{ race.track }}</h1>
                     <div class="track-container">
@@ -67,9 +67,10 @@
                         Race: {{race.race_laps}} Laps
                     </div>
                 </div>
-                </a>
-            </div>
-    {% endfor %}
+            </a>
+            <div class="advert"></div>
+            {% endfor %}
+        </div>
 </body>
 
 
