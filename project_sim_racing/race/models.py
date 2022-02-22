@@ -21,6 +21,7 @@ class race(models.Model):
     practice_server = models.BooleanField(default=False)
     name = models.CharField(max_length=50,default='')
     track = models.ForeignKey(track, on_delete=models.CASCADE)
+    car = models.ForeignKey(car, on_delete=models.CASCADE)
     info = models.TextField(max_length=500,default='')
     minute = models.IntegerField()
     mod_link = models.CharField(default="", blank=True, max_length=1000)
@@ -35,10 +36,3 @@ class race(models.Model):
         return self.time - timezone.now()
     def __str__(self):
         return self.name
-
-class cars_for_the_race(models.Model):
-    race = models.ForeignKey(race, on_delete=models.CASCADE)
-    car = models.ForeignKey(car, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.race.name + self.car.brand_name
