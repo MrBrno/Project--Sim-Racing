@@ -11,6 +11,10 @@
                     {{ object.info }}
                     
                 </p>
+                
+                {% for car in object.car_for_the_race_set.all%}
+                    <h1>{{car.car}}</h1>
+                {% endfor %}
 
         </div>
 
