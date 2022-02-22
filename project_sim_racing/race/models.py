@@ -23,6 +23,7 @@ class race(models.Model):
     track = models.ForeignKey(track, on_delete=models.CASCADE)
     info = models.TextField(max_length=500,default='')
     minute = models.IntegerField()
+    mod_link = models.CharField(default="", blank=True, max_length=1000)
     practice_time = models.IntegerField(default=5)
     quaulify_time = models.IntegerField(default=10)
     race_laps = models.IntegerField(default=5)
