@@ -8,10 +8,11 @@
                 <p>
                     {{ object.name }}<br>
                     {{ object.track }} | Practice Time {{object.practice_time}} | Qualifying {{object.qualify_time}} | Race Laps {{object.race_laps}}<br>
-                    {{ object.info }}
-                    
+                    {{ object.info }}             
                 </p>
-
+                {% for car in object.cars_for_the_race_set.all%}
+                    <h1>{{car.car}}</h1>
+                {% endfor %}
         </div>
 
 </div>
