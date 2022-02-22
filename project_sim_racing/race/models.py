@@ -2,13 +2,13 @@ from tkinter import CASCADE
 from django.db import models
 from django.utils import timezone
 from django.urls import reverse
-
 class track(models.Model):
     track_name = models.CharField(max_length=50,default='')
     track_image = models.ImageField(upload_to='track_images',blank=True)
     def __str__(self):
         return self.track_name
     
+
 class car(models.Model):
     brand_name = models.CharField(max_length=50,default='')
     model_name = models.CharField(max_length=50,default='')
@@ -22,7 +22,6 @@ class race(models.Model):
     name = models.CharField(max_length=50,default='')
     track = models.ForeignKey(track, on_delete=models.CASCADE)
     car = models.ForeignKey(car, on_delete=models.CASCADE)
-    mod_link = models.CharField(default="", blank=True, max_length=1000)
     info = models.TextField(max_length=500,default='')
     minute = models.IntegerField()
     practice_time = models.IntegerField(default=5)
